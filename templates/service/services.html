@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class=" ml-5 grid grid-cols-5 gap-4 mr-5">
+    <body>
+        {% for service in services %}
+            <a href="{% url 'post_service' service.pk %}">
+                <div class="bg-orange-700 p-8 mt-5 rounded-lg hover:bg-orange-600">
+                    <p class="text-white text-center text-xl font-semibold">{{ service.name }}</p>
+                </div>
+            </a>
+
+        {% endfor %}
+        <a href="{% url 'post_new_service' %}">
+                <div class="bg-orange-700 p-8 mt-5 rounded-lg hover:bg-orange-600">
+                    <p class="text-white text-center text-xl font-semibold">+</p>
+                </div>
+        </a>
+
+    </body>
+</div>
+{% endblock content %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="ml-40 mr-80 mb-30">
+   <form method="post">{% csrf_token %}
+    <p class="text-white font-bold">Servis</p>
+    <div class="block bg-white mt-4 pr-3 pl-2 pt-2 pb-2 rounded-lg">{{ activity_form.service }}</div>
+    <p class="text-white mt-4 font-bold">Narx</p>
+    <div class="block bg-white mt-4 pr-3 pl-2 pt-2 pb-2 rounded-lg">{{ activity_form.price }}</div>
+    <p class="text-white mt-4 font-bold">Soni</p>
+    <div class="block bg-white mt-4 pr-3 pl-2 pt-2 pb-2 rounded-lg">{{ activity_form.service_count }}</div>
+    <p class="text-white mt-4 font-bold">Izoh</p>
+    <div class="block bg-white mt-4 pr-3 pl-2 pt-2 pb-2 rounded-lg">{{ activity_form.comment }}</div>
+    <button class="px-5 mt-8 w-full py-3 rounded-xl text-white bg-neutral-600 hover:bg-orange-800" type="submit">Post</button>
+</form>
+</div>
+
+
+{% endblock content %}
+

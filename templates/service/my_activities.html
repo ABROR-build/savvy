@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="ml-20 mt-10 mr-20">
+{% for db in daily_budget %}
+        <h1 class="pb-6 text-xl font-semibold text-white">Bugun jami: {{ db.total_budget }} so'm</h1>
+{% endfor %}
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Xodim
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Servis
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Narx
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Son
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Vaqt
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Jami
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Izoh
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for activity in activities %}
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 ">
+                        {{ activity.staff }}
+                    </th>
+                    <td class="px-6 py-4 text-gray-100 font-semibold">
+                        {{ activity.service }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ activity.price }} so'm
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ activity.service_count }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ activity.time }}
+                    </td>
+                    <td class="px-6 py-4 text-gray-200 font-semibold">
+                        {{ activity.total_price }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ activity.comment }}
+                    </td>
+                </tr>
+            {% endfor %}
+          {% for custom_activity in custom_activities %}
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4">
+                        {{ custom_activity.staff }}
+                    </th>
+                    <td class="px-6 py-4 text-orange-500 font-semibold">
+                        {{ custom_activity.service }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ custom_activity.price }} so'm
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ custom_activity.service_count }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ custom_activity.time }}
+                    </td>
+                    <td class="px-6 py-4 text-gray-200 font-semibold">
+                        {{ custom_activity.total_price }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ custom_activity.comment }}
+                    </td>
+                </tr>
+          {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock content %}

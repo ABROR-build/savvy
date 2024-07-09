@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class=" ml-10 grid grid-cols-5 gap-4 mr-10">
+        {% for category in categories %}
+            <a href="{% url 'filter-stationaries' category.pk %}">
+                <div class="bg-orange-700 mt-7 pt-2 pb-2 rounded-lg hover:bg-orange-600">
+                    <p class="text-white text-center text-l font-semibold">{{ category.name }}</p>
+                </div>
+            </a>
+
+        {% endfor %}
+</div>
+{% endblock content %}

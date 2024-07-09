@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock title %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-zinc-800">
+{% if request.user.is_authenticated %}
+    <nav class="flex items-center px-4 py-2 bg-zinc-700">
+        {% load static %}
+            <a href="{% url 'list_services' %}">
+                <div class="pl-2">
+                    <img src="{% static 'assets/savvy_white.png' %}" width="100px">
+                </div>
+            </a>
+            <div class="pl-3">
+                <a href="{% url 'list_services' %}" class="text-xl text-white">Servislar</a>
+            </div>
+            <div class="pl-3">
+                <a href="{% url 'list-stationaries' %}" class="text-xl text-white">Kanstovarlar</a>
+            </div>
+            <div class="pl-3">
+                <a href="{% url 'list_my_activities' user.pk %}" class="text-xl text-white">Hisobotlarim</a>
+            </div>
+            <div class="pl-60">
+                <p class="text-xl font-semibold text-white">Xodim: {{ request.user.username }}</p>
+            </div>
+            <div class="flex items-center ml-auto">
+                <a href="{% url 'Logout' %}" class="px-5 py-3 rounded-xl text-white bg-zinc-700 hover:bg-zinc-600">Chiqish</a>
+            </div>
+    </nav>
+{% else %}
+<div>
+</div>
+{% endif %}
+
+    {% block content %}
+    {% endblock content %}
+
+    {% block scripts %}
+    {% endblock scripts%}
+
+</body>
+</html>
