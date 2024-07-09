@@ -1,3 +1,3 @@
 Savvy is a ERP system designed for a company "Mega Centre"
-- it calculates daily and monthly revenues
-- Calculates salary of the staff
+- it calculates daily revenues of each staff and whole company according to services done and stationaries sold
+- ...Now everything is in progress I'll add New features and introduce them here In Shaa Allah :)
