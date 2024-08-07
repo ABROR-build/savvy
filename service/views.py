@@ -27,6 +27,7 @@ class PostService(View):
         daily_budgets = models.DailyBudget.objects.filter(staff=request.user)
 
         context = {
+            'service': service,
             'activity_form': activity_form,
             'activities': activities,
             'daily_budgets': daily_budgets,

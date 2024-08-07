@@ -1,20 +1,21 @@
 {% extends 'base.html' %}
 
+{% load form_tags %}
+
 {% block content %}
 <div class="ml-40 mr-80 mb-30">
    <form method="post">{% csrf_token %}
-    <p class="text-white font-bold">Servis</p>
-    <div class="block bg-white mt-4 pr-3 pl-2 pt-2 pb-2 rounded-lg">{{ activity_form.service }}</div>
-    <p class="text-white mt-4 font-bold">Narx</p>
-    <div class="block bg-white mt-4 pr-3 pl-2 pt-2 pb-2 rounded-lg">{{ activity_form.price }}</div>
-    <p class="text-white mt-4 font-bold">Soni</p>
-    <div class="block bg-white mt-4 pr-3 pl-2 pt-2 pb-2 rounded-lg">{{ activity_form.service_count }}</div>
-    <p class="text-white mt-4 font-bold">Izoh</p>
-    <div class="block bg-white mt-4 pr-3 pl-2 pt-2 pb-2 rounded-lg">{{ activity_form.comment }}</div>
+       <p class="block mb-2 mt-3 text-sm font-medium text-gray-900 dark:text-white">Servis</p>
+       {{ activity_form.service|add_class:"block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"}}
+       <p class="block mb-2 mt-3 text-sm font-medium text-gray-900 dark:text-white">Narx</p>
+       {{ activity_form.price|add_class:"block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" }}
+       <p class="block mb-2 mt-3 text-sm font-medium text-gray-900 dark:text-white">Servis soni</p>
+       {{ activity_form.service_count|add_class:"block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" }}
+       <p class="block mb-2 mt-3 text-sm font-medium text-gray-900 dark:text-white">Izoh</p>
+       {{ activity_form.comment|add_class:"block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" }}
     <button class="px-5 mt-8 w-full py-3 rounded-xl text-white bg-neutral-600 hover:bg-orange-800" type="submit">Post</button>
 </form>
 </div>
 
 
 {% endblock content %}
-
