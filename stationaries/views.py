@@ -1,6 +1,7 @@
 from django.views import View
 from django.shortcuts import render, redirect
 from django.utils import timezone
+from datetime import date
 
 from . import models
 from . import forms
@@ -49,7 +50,17 @@ class SellStationary(View):
             stationary_activity = sell_form.save(commit=False)
             stationary_activity.staff = request.user
             stationary_activity.save()
+
+            stationary_income, created = models.StationaryIncome.objects.get_or_create(staff=request.user,
+                                                                                       date=date.today())
+            stationary_income.save()
+
+            stationary_income = models.StationaryIncome.objects.get(staff=request.user, date=date.today())
+            stationary_income.total_budget += stationary_activity.price
+            stationary_income.save()
+
             return redirect('list-stationaries')
+
         else:
             context = {
                 'sell_form': sell_form

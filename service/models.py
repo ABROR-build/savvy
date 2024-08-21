@@ -63,17 +63,12 @@ class DailyBudget(models.Model):
     comment_minus = models.CharField(max_length=500, null=True, blank=True)
     plus = models.IntegerField(default=0)
     comment_plus = models.CharField(max_length=500, null=True, blank=True)
-    original = models.IntegerField(default=0)
     total_budget = models.IntegerField(default=0)
-
-    def get_original(self):
-        return self.total_budget + 0
 
     def edit(self):
         return (self.total_budget + self.plus) - self.minus
 
     def save(self, *args, **kwargs):
-        self.original = self.get_original()
         self.total_budget = self.edit()
         super().save(*args, **kwargs)
 

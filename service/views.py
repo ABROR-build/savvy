@@ -80,7 +80,6 @@ class PostCustomService(View):
             daily_budget.save()
 
             if not created:
-                # daily_budget.total_budget += activity.total_price
                 daily_budget.save()
 
             return redirect('list_services')

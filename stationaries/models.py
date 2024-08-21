@@ -43,3 +43,24 @@ class StationaryActivity(models.Model):
 
     class Meta:
         db_table = "StationarActivity"
+
+
+class StationaryIncome(models.Model):
+    staff = models.ForeignKey(Staff, on_delete=models.CASCADE)
+    date = models.DateField(auto_now_add=True)
+    minus = models.IntegerField(default=0)
+    comment_minus = models.CharField(max_length=500, null=True, blank=True)
+    plus = models.IntegerField(default=0)
+    comment_plus = models.CharField(max_length=500, null=True, blank=True)
+    total_budget = models.IntegerField(default=0)
+
+    def edit(self):
+        return (self.total_budget + self.plus) - self.minus
+
+    def save(self, *args, **kwargs):
+        self.total_budget = self.edit()
+        super().save(*args, **kwargs)
+
+    class Meta:
+        db_table = "StationaryIncome"
+
