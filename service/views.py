@@ -93,12 +93,11 @@ class PostCustomService(View):
 
 
 class ListMyActivities(View):
-    def get(self, request, pk):
+    def get(self, request):
         today = timezone.localtime()
-        today2 = timezone.localdate()
-        activities = models.Activity.objects.filter(staff=pk, time__date=today.date())
-        custom_activities = models.CustomActivity.objects.filter(staff=pk, time__date=today.date())
-        daily_budget = models.DailyBudget.objects.filter(staff=pk, date=today2)
+        activities = models.Activity.objects.filter(staff=request.user, time__date=today.date())
+        custom_activities = models.CustomActivity.objects.filter(staff=request.user, time__date=today.date())
+        daily_budget = models.DailyBudget.objects.filter(staff=request.user, date=today)
         context = {
             'activities': activities,
             'custom_activities': custom_activities,

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="ml-20 mt-10 mr-20">
+<a href="{% url 'list_my_activities' %}">
+    <div class="bg-orange-700 pt-1 pb-1 mr-80 ml-80 mt-5 mb-10 rounded-lg hover:bg-orange-600">
+        <p class="text-white text-center text-l font-semibold">Servislar bo'yicha hisobotga o'tish</p>
+    </div>
+</a>
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Xodim
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Kanstovar
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Narx
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Son
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Sotilgan vaqt
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Jami
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Izoh
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for sell in sells %}
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 ">
+                        {{ sell.staff }}
+                    </th>
+                    <td class="px-6 py-4 text-gray-100 font-semibold">
+                        {{ sell.stationary }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ sell.price }} so'm
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ sell.stationary_count }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ sell.time_sold }}
+                    </td>
+                    <td class="px-6 py-4 text-gray-200 font-semibold">
+                        {{ sell.total_price }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ sell.comment }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock content %}

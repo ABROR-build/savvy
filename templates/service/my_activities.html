@@ -2,6 +2,11 @@
 
 {% block content %}
 <div class="ml-20 mt-10 mr-20">
+<a href="{% url 'list-sell' %}">
+    <div class="bg-orange-700 pt-1 pb-1 mr-80 ml-80 mt-5 rounded-lg hover:bg-orange-600">
+        <p class="text-white text-center text-l font-semibold">Konstavarlar bo'yicha hisobotga o'tish</p>
+    </div>
+</a>
 {% for db in daily_budget %}
         <h1 class="pb-6 text-xl font-semibold text-white">Bugun jami: {{ db.total_budget }} so'm</h1>
 {% endfor %}
