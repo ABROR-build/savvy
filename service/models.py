@@ -1,5 +1,7 @@
 from django.db import models
 from staff.models import Staff
+from stationaries.models import StationaryIncome
+
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.db.models import Sum
@@ -81,12 +83,14 @@ class CompanyDailyBudget(models.Model):
     budget = models.IntegerField()
 
     @receiver(post_save, sender=DailyBudget)
+    @receiver(post_save, sender=StationaryIncome)
     @receiver(post_delete, sender=DailyBudget)
+    @receiver(post_delete, sender=StationaryIncome)
     def update_company_daily_budget(sender, instance, **kwargs):
         day = instance.date
-        total_budget_sum = DailyBudget.objects.filter(date=day).aggregate(Sum('total_budget'))['total_budget__sum'] or 0
-        CompanyDailyBudget.objects.update_or_create(day=day, defaults={'budget': total_budget_sum})
+        total_budget_sum1 = DailyBudget.objects.filter(date=day).aggregate(Sum('total_budget'))['total_budget__sum'] or 0
+        total_budget_sum2 = StationaryIncome.objects.filter(date=day).aggregate(Sum('total_budget'))['total_budget__sum'] or 0
+        CompanyDailyBudget.objects.update_or_create(day=day, defaults={'budget': total_budget_sum1 + total_budget_sum2})
 
     class Meta:
         db_table = "CompanyDailyBudget"
-
