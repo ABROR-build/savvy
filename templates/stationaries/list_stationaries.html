@@ -9,14 +9,13 @@
 <div class=" ml-5 grid grid-cols-5 gap-4 mr-5">
 
     {% for stationary in stationaries %}
-        <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg mt-5 shadow dark:bg-gray-800 dark:border-gray-700">
+        <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg mt-5 shadow">
             <img class="object-cover max-w-full p-8 border-radius: 9999px" src="{{ stationary.image.url }}">
             <a href="{% url 'sell-stationaries' stationary.pk %}">
                 <div class="px-5 pb-5">
-                    <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{{ stationary.name }}</h5>
-                    <br>
-                    <div class="flex items-center justify-between">
-                      <span class="text-3xl font-bold text-gray-900 dark:text-white">{{ stationary.price }} so'm</span>
+                    <h5 class="text-lg pb-3 font-medium tracking-tight text-gray-500">{{ stationary.name }}</h5>
+                    <div class="flex items-center bg-gray-200 rounded-xl justify-center">
+                      <span class="text-xl font-semibold text-slate-500">{{ stationary.price }} so'm</span>
                     </div>
                 </div>
             </a>

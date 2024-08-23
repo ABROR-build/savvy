@@ -8,11 +8,11 @@
     </div>
 </a>
 {% for db in daily_budget %}
-        <h1 class="pb-6 text-xl font-semibold text-white">Bugun jami: {{ db.total_budget }} so'm</h1>
+        <h1 class="pb-6 text-lg font-semibold text-orange-500">Bugun jami: {{ db.total_budget }} so'm</h1>
 {% endfor %}
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg border-2 border-gray-100">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
                     <th scope="col" class="px-6 py-3">
                         Xodim
@@ -39,11 +39,11 @@
             </thead>
             <tbody>
             {% for activity in activities %}
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <tr class="bg-white border-b">
                     <th scope="row" class="px-6 py-4 ">
                         {{ activity.staff }}
                     </th>
-                    <td class="px-6 py-4 text-gray-100 font-semibold">
+                    <td class="px-6 py-4 text-gray-600 font-semibold">
                         {{ activity.service }}
                     </td>
                     <td class="px-6 py-4">
@@ -55,7 +55,7 @@
                     <td class="px-6 py-4">
                         {{ activity.time }}
                     </td>
-                    <td class="px-6 py-4 text-gray-200 font-semibold">
+                    <td class="px-6 py-4 text-gray-600 font-semibold">
                         {{ activity.total_price }}
                     </td>
                     <td class="px-6 py-4">
@@ -64,7 +64,7 @@
                 </tr>
             {% endfor %}
           {% for custom_activity in custom_activities %}
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <tr class="bg-white border-b">
                     <th scope="row" class="px-6 py-4">
                         {{ custom_activity.staff }}
                     </th>
@@ -80,7 +80,7 @@
                     <td class="px-6 py-4">
                         {{ custom_activity.time }}
                     </td>
-                    <td class="px-6 py-4 text-gray-200 font-semibold">
+                    <td class="px-6 py-4 text-gray-600 font-semibold">
                         {{ custom_activity.total_price }}
                     </td>
                     <td class="px-6 py-4">
