@@ -102,5 +102,5 @@ class ListMyActivities(View):
             'custom_activities': custom_activities,
             'daily_budget': daily_budget
         }
-        print(daily_budget)
         return render(request, 'service/my_activities.html', context=context)
+

@@ -15,17 +15,24 @@
                 </div>
             </a>
             <div class="pl-3">
-                <a href="{% url 'list_services' %}" class="text-xl text-gray-200">Servislar</a>
+                <a href="{% url 'list_services' %}" class="text-l font-medium text-gray-300">servislar</a>
             </div>
             <div class="pl-3">
-                <a href="{% url 'list-stationaries' %}" class="text-xl text-gray-200">Kanstovarlar</a>
+                <a href="{% url 'list-stationaries' %}" class="text-l font-medium text-gray-300">kanstovarlar</a>
             </div>
             <div class="pl-3">
-                <a href="{% url 'list_my_activities' %}" class="text-xl text-gray-200">Hisobotlarim</a>
+                <a href="{% url 'list_my_activities' %}" class="text-l font-medium text-gray-300">hisobotlarim</a>
             </div>
             <div class="pl-60">
                 <p class="text-xl font-semibold text-gray-200">Xodim: {{ request.user.username }}</p>
             </div>
+
+            {% if request.user.is_staff %}
+                <div class="flex items-center ml-[300px]">
+                    <a href="{% url 'list-todays-activities' %}" class="px-5 py-3 rounded-xl text-white bg-orange-700 hover:bg-orange-500">Adminka</a>
+                </div>
+            {% endif %}
+
             <div class="flex items-center ml-auto">
                 <a href="{% url 'Logout' %}" class="px-5 py-3 rounded-xl text-white bg-slate-700 hover:bg-slate-500">Chiqish</a>
             </div>

@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="ml-20 mt-10 mr-20">
+     <div class="ml-3">
+        <p class="text-l font-regular text-gray-500">Xodim:</p>
+        <p class="text-4xl font-medium text-gray-800">{{ staff }}</p>
+    </div>
+
+    <a href="{% url 'list-todays-activities' %}">
+        <div class="bg-orange-600 mr-110 inline-block ml-3 mt-5 rounded-lg p-2 mb-2 hover:bg-orange-400">
+            <p class="text-white font-semibold">asosiy sahifa</p>
+        </div>
+    </a>
+
+    <a href="{% url 'filter-by-user' staff.username %}">
+        <div class="bg-green-600 mr-110 inline-block  ml-3 mt-5 rounded-lg p-2 mb-2 hover:bg-green-400">
+            <p class="text-white font-semibold">Bugun jami: {{ total_budget }} so'm</p>
+        </div>
+    </a>
+
+    <a href="#">
+        <div class="bg-gray-700 mr-110 inline-block  ml-3 mt-5 rounded-lg p-2 mb-2 hover:bg-gray-500 outline outline-gray-500 outline-2 outline-offset-2">
+            <p class="text-white font-semibold">Xizmatlar: {{activity_total}} so'm</p>
+        </div>
+    </a>
+
+    <a href="{% url 'filter-stationaries-by-user' staff.username %}">
+        <div class="bg-blue-600 mr-110 inline-block  ml-3 mt-5 rounded-lg p-2 mb-2 hover:bg-blue-400">
+            <p class="text-white font-semibold">Kanstovarlar: {{ stationary_total }} so'm</p>
+        </div>
+    </a>
+
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg border-2 border-gray-100">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Xodim
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Servis
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Narx
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Son
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Vaqt
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Jami
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Izoh
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for activity in activities  %}
+                <tr class="bg-white border-b">
+                    <td scope="row" class="px-6 py-4 ">
+                        {{ activity.staff }}<br>
+                    </td>
+                    <td class="px-6 py-4 text-gray-600 font-semibold">
+                        {{ activity.service }}<br>
+                    </td>
+
+                    <td class="px-6 py-4">
+                        {{ activity.price }} so'm<br>
+
+                    </td>
+
+                    <td class="px-6 py-4">
+                        {{ activity.service_count }}<br>
+
+                    </td>
+
+                    <td class="px-6 py-4">
+                        {{ activity.time }}<br>
+                    </td>
+
+                    <td class="px-6 py-4 text-gray-600 font-semibold">
+                        {{ activity.total_price }}<br>
+                    </td>
+
+                    <td class="px-6 py-4">
+                        {{ activity.comment }}<br>
+                    </td>
+                </tr>
+            {% endfor %}
+            {% for activity in custom_activities  %}
+                <tr class="bg-white border-b">
+                    <td scope="row" class="px-6 py-4 ">
+                        {{ activity.staff }}<br>
+                    </td>
+                    <td class="px-6 py-4 text-orange-600 font-semibold">
+                        {{ activity.service }}<br>
+                    </td>
+
+                    <td class="px-6 py-4">
+                        {{ activity.price }} so'm<br>
+                    </td>
+
+                    <td class="px-6 py-4">
+                        {{ activity.service_count }}<br>
+
+                    </td>
+
+                    <td class="px-6 py-4">
+                        {{ activity.time }}<br>
+                    </td>
+
+                    <td class="px-6 py-4 text-gray-600 font-semibold">
+                        {{ activity.total_price }}<br>
+                    </td>
+
+                    <td class="px-6 py-4">
+                        {{ activity.comment }}<br>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock content %}

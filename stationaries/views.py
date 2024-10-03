@@ -56,7 +56,7 @@ class SellStationary(View):
             stationary_income.save()
 
             stationary_income = models.StationaryIncome.objects.get(staff=request.user, date=date.today())
-            stationary_income.total_budget += stationary_activity.price
+            stationary_income.total_budget += stationary_activity.total_price
             stationary_income.save()
 
             return redirect('list-stationaries')
