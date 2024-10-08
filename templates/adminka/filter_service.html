@@ -58,8 +58,10 @@
                             {{ activity.staff }}<br>
                         </a>
                     </td>
-                    <td class="px-6 py-4 text-gray-600 font-semibold">
-                        {{ activity.service }}<br>
+                    <td class="px-6 py-4 text-gray-600 font-semibold hover:text-orange-500">
+                        <a href="{% url 'edit-activity' activity.pk %}">
+                            {{ activity.service }}<br>
+                        </a>
                     </td>
 
                     <td class="px-6 py-4">
@@ -90,8 +92,10 @@
                     <td scope="row" class="px-6 py-4 ">
                         {{ activity.staff }}<br>
                     </td>
-                    <td class="px-6 py-4 text-orange-600 font-semibold">
-                        {{ activity.service }}<br>
+                    <td class="px-6 py-4 text-orange-600 font-semibold hover:text-orange-500">
+                        <a href="{% url 'edit-activity' activity.pk %}">
+                            {{ activity.service }}<br>
+                        </a>
                     </td>
 
                     <td class="px-6 py-4">

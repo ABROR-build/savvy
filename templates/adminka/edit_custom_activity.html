@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load form_tags %}
+
+{% block content %}
+<div class="ml-40 mr-80 mb-30">
+   <form method="post">{% csrf_token %}
+       <p class="block mb-2 mt-3 text-sm font-medium text-gray-400">Servis</p>
+       {{ custom_activity_edit_form.service|add_class:"block w-full p-4 text-gray-500 text-medium border-2 border-gray-300 rounded-lg bg-white text-base focus:border-orange-500 focus:outline-orange-500"}}
+       <p class="block mb-2 mt-3 text-sm font-medium text-gray-400">Narx</p>
+       {{ custom_activity_edit_form.price|add_class:"block w-full p-4 text-gray-500 text-medium border-2 border-gray-300 rounded-lg bg-white text-base focus:border-orange-500 focus:outline-orange-500" }}
+       <p class="block mb-2 mt-3 text-sm font-medium text-gray-400">Servis soni</p>
+       {{ custom_activity_edit_form.service_count|add_class:"block w-full p-4 text-gray-500 text-medium border-2 border-gray-300 rounded-lg bg-white text-base focus:border-orange-500 focus:outline-orange-500" }}
+       <p class="block mb-2 mt-3 text-sm font-medium text-gray-400">Izoh</p>
+       {{ custom_activity_edit_form.comment|add_class:"block w-full p-4 text-gray-500 text-medium border-2 border-gray-300 rounded-lg bg-white text-base focus:border-orange-500 focus:outline-orange-500" }}
+    <button class="px-5 mt-8 w-full py-3 rounded-xl text-white bg-neutral-600 hover:bg-orange-800" type="submit">Edit</button>
+</form>
+</div>
+
+
+{% endblock content %}

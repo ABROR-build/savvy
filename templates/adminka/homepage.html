@@ -58,8 +58,10 @@
                         </a>
                         <br>
                     </td>
-                    <td class="px-6 py-4 text-gray-600 font-semibold">
-                        {{ activity.service }}<br>
+                    <td class="px-6 py-4 text-gray-600 font-semibold hover:text-orange-500">
+                        <a href="{% url 'edit-activity' activity.pk %}">
+                            {{ activity.service }}<br>
+                        </a>
                     </td>
 
                     <td class="px-6 py-4">
@@ -88,12 +90,15 @@
             {% for activity in custom_activities  %}
                 <tr class="bg-white border-b">
                     <td scope="row" class="px-6 py-4 hover:font-medium hover:text-orange-600">
-                        <a href="{% url 'filter-by-user' activity.staff.username %}">
+                        <a href="{% url 'filter-by-user' activity.staff.username %}" >
                             {{ activity.staff }}<br>
                         </a>
                     </td>
-                    <td class="px-6 py-4 text-orange-600 font-semibold">
-                        {{ activity.service }}<br>
+                    <td class="px-6 py-4 text-orange-600 font-semibold hover:text-orange-500">
+                        <a href="{% url 'edit-custom-activity' activity.pk %}">
+                            {{ activity.service }}<br>
+                        </a>
+
                     </td>
 
                     <td class="px-6 py-4">
