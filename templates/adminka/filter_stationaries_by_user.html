@@ -64,8 +64,11 @@
                     <td scope="row" class="px-6 py-4 ">
                         {{ stationary.staff }}<br>
                     </td>
-                    <td class="px-6 py-4 text-blue-600 font-semibold">
-                        {{ stationary.stationary }}<br>
+                    <td class="px-6 py-4 text-blue-600 font-semibold hover:font-medium hover:text-orange-600">
+                        <a href="{% url 'edit-stationary-activity' stationary.pk %}">
+                            {{ stationary.stationary }}
+                        </a>
+                        <br>
                     </td>
 
                     <td class="px-6 py-4">

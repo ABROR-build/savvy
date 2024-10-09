@@ -246,3 +246,34 @@ class EditCustomActivity(View):
                 return redirect('list-todays-activities')
         else:
             return redirect('Login')
+
+
+class EditStationaryActivity(View):
+    def get(self, request, pk):
+        if request.user.is_staff:
+            stationary_activity = StationaryActivity.objects.get(pk=pk)
+            stationary_activity_edit_form = forms.EditStationaryActivityForm(instance=stationary_activity)
+            context = {
+                'stationary_activity_edit_form': stationary_activity_edit_form
+            }
+            return render(request, 'adminka/edit_stationary_activity.html', context=context)
+        else:
+            return redirect('Login')
+
+    def post(self, request, pk):
+        if request.user.is_staff:
+            today = timezone.localtime()
+            stationary_activity = StationaryActivity.objects.get(pk=pk)
+            stationary_activity_previous = StationaryActivity.objects.get(pk=pk)
+            stationary_activity_edit_form = forms.EditStationaryActivityForm(request.POST, instance=stationary_activity)
+            if stationary_activity_edit_form.is_valid():
+                stationary_activity = stationary_activity_edit_form.save(commit=False)
+                stationary_activity.save()
+
+                stationary_income = models.StationaryIncome.objects.get(staff=stationary_activity.staff, date=today)
+                stationary_income.total_budget += (stationary_activity.total_price - stationary_activity_previous.total_price)
+                stationary_income.save()
+
+                return redirect('list-todays-activities')
+        else:
+            return redirect('Login')

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load form_tags %}
+
+{% block content %}
+<div class="flex ml-40 mr-80 mb-30">
+    <img class="inline max-h-80 max-w-80 object-contain p-8" src="{{ stationary.image.url }}">
+   <form method="post" class="flex-1">{% csrf_token %}
+       <p class="block mb-2 mt-3 text-sm font-medium text-gray-400">Kanstovar</p>
+       {{ stationary_activity_edit_form.stationary|add_class:"block w-full p-4 text-gray-500 text-medium border-2 border-gray-300 rounded-lg bg-white text-base focus:border-orange-500 focus:outline-orange-500"}}
+       <p class="block mb-2 mt-3 text-sm font-medium text-gray-400">Narx</p>
+       {{ stationary_activity_edit_form.price|add_class:"block w-full p-4 text-gray-500 text-medium border-2 border-gray-300 rounded-lg bg-white text-base focus:border-orange-500 focus:outline-orange-500" }}
+       <p class="block mb-2 mt-3 text-sm font-medium text-gray-400">Kanstovar soni</p>
+       {{ stationary_activity_edit_form.stationary_count|add_class:"block w-full p-4 text-gray-500 text-medium border-2 border-gray-300 rounded-lg bg-white text-base focus:border-orange-500 focus:outline-orange-500" }}
+       <p class="block mb-2 mt-3 text-sm font-medium text-gray-400">Izoh</p>
+       {{ stationary_activity_edit_form.comment|add_class:"block w-full p-4 text-gray-500 text-medium border-2 border-gray-300 rounded-lg bg-white text-base focus:border-orange-500 focus:outline-orange-500" }}
+    <button class="px-5 mt-8 w-full py-3 rounded-xl text-white bg-neutral-600 hover:bg-orange-800" type="submit">Edit</button>
+</form>
+</div>
+
+
+{% endblock content %}

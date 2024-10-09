@@ -13,5 +13,6 @@ urlpatterns = [
     # update
     path('edit-activity-/<int:pk>/', views.EditActivity.as_view(), name='edit-activity'),
     path('edit-custom-activity-/<int:pk>/', views.EditCustomActivity.as_view(), name='edit-custom-activity'),
+    path('edit-stationary-activity-/<int:pk>/', views.EditStationaryActivity.as_view(), name='edit-stationary-activity'),
 
 ]

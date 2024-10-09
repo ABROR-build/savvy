@@ -89,8 +89,10 @@
             {% endfor %}
             {% for activity in custom_activities  %}
                 <tr class="bg-white border-b">
-                    <td scope="row" class="px-6 py-4 ">
-                        {{ activity.staff }}<br>
+                    <td scope="row" class="px-6 py-4 hover:font-medium hover:text-orange-600">
+                        <a href="{% url 'filter-services-by-user' activity.staff.username %}">
+                            {{ activity.staff }}<br>
+                        </a>
                     </td>
                     <td class="px-6 py-4 text-orange-600 font-semibold hover:text-orange-500">
                         <a href="{% url 'edit-activity' activity.pk %}">
