@@ -91,6 +91,15 @@
                     <td class="px-6 py-4">
                         {{ stationary.comment }}<br>
                     </td>
+                    {% load static %}
+                    <td class="px-6 py-4">
+                        <a href="{% url 'edit-stationary-activity' stationary.pk %}">
+                            <img src="{% static 'assets/edit-button.png' %}" width="24px" class="inline hover:opacity-70">
+                        </a>
+                        <a href="{% url 'delete-stationary-activity' stationary.pk %}">
+                            <img src="{% static 'assets/delete-button.png' %}" width="24px" class="inline hover:opacity-70">
+                        </a>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>

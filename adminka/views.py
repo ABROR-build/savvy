@@ -1,5 +1,6 @@
 from django.db.models import Sum
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.views import View
 from django.utils import timezone
 
@@ -11,7 +12,7 @@ from . import forms
 
 
 # Current day||||
-# ///// READ CLASSES BELOW
+# ///// READ CLASSES FOR ACTIVITIES BELOW
 class ListTodayActivities(View):
     def get(self, request):
         if request.user.is_staff:
@@ -185,7 +186,7 @@ class FilterStationariesByUser(View):
             return redirect('Login')
 
 
-# ///// UPDATE CLASSES BELOW
+# ///// UPDATE CLASSES FOR ACTIVITIES BELOW
 class EditActivity(View):
     def get(self, request, pk):
         if request.user.is_staff:
@@ -275,5 +276,75 @@ class EditStationaryActivity(View):
                 stationary_income.save()
 
                 return redirect('list-todays-activities')
+        else:
+            return redirect('Login')
+
+
+# ///// DELETE CLASSES FOR ACTIVITIES BELOW
+class DeleteActivity(View):
+    def get(self, request, pk):
+        if request.user.is_staff:
+            activity = models.Activity.objects.get(pk=pk)
+            context = {
+                'activity': activity
+            }
+            return render(request, 'adminka/confirm_delete_activity.html', context=context)
+        return redirect('Login')
+
+    def post(self, request, pk):
+        if request.user.is_staff:
+            today = timezone.localtime()
+            activity = models.Activity.objects.get(pk=pk)
+            daily_budget = models.DailyBudget.objects.get(staff=activity.staff, date=today)
+            daily_budget.total_budget -= activity.total_price
+            daily_budget.save()
+            activity.delete()
+            return redirect(reverse_lazy('list-todays-activities'))
+        else:
+            return redirect('Login')
+
+
+class DeleteCustomActivity(View):
+    def get(self, request, pk):
+        if request.user.is_staff:
+            custom_activity = models.CustomActivity.objects.get(pk=pk)
+            context = {
+                'custom_activity': custom_activity
+            }
+            return render(request, 'adminka/confirm_delete_activity.html', context=context)
+        return redirect('Login')
+
+    def post(self, request, pk):
+        if request.user.is_staff:
+            today = timezone.localtime()
+            custom_activity = models.CustomActivity.objects.get(pk=pk)
+            daily_budget = models.DailyBudget.objects.get(staff=custom_activity.staff, date=today)
+            daily_budget.total_budget -= custom_activity.total_price
+            daily_budget.save()
+            custom_activity.delete()
+            return redirect(reverse_lazy('list-todays-activities'))
+        else:
+            return redirect('Login')
+
+
+class DeleteStationaryActivity(View):
+    def get(self, request, pk):
+        if request.user.is_staff:
+            stationary_activity = StationaryActivity.objects.get(pk=pk)
+            context = {
+                'stationary_activity': stationary_activity
+            }
+            return render(request, 'adminka/confirm_delete_activity.html', context=context)
+        return redirect('Login')
+
+    def post(self, request, pk):
+        if request.user.is_staff:
+            today = timezone.localtime()
+            stationary_activity = StationaryActivity.objects.get(pk=pk)
+            stationary_income = models.StationaryIncome.objects.get(staff=stationary_activity.staff, date=today)
+            stationary_income.total_budget -= stationary_activity.total_price
+            stationary_income.save()
+            stationary_activity.delete()
+            return redirect(reverse_lazy('list-todays-activities'))
         else:
             return redirect('Login')
