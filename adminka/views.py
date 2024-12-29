@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.utils import timezone
+import calendar
 
 from service import models
 from staff.models import Staff
@@ -11,7 +12,8 @@ from stationaries.models import StationaryActivity
 from . import forms
 
 
-# Current day||||
+# -------- Current day||||
+
 # ///// READ CLASSES FOR ACTIVITIES BELOW
 class ListTodayActivities(View):
     def get(self, request):
@@ -272,7 +274,8 @@ class EditStationaryActivity(View):
                 stationary_activity.save()
 
                 stationary_income = models.StationaryIncome.objects.get(staff=stationary_activity.staff, date=today)
-                stationary_income.total_budget += (stationary_activity.total_price - stationary_activity_previous.total_price)
+                stationary_income.total_budget += (
+                            stationary_activity.total_price - stationary_activity_previous.total_price)
                 stationary_income.save()
 
                 return redirect('list-todays-activities')
@@ -348,3 +351,9 @@ class DeleteStationaryActivity(View):
             return redirect(reverse_lazy('list-todays-activities'))
         else:
             return redirect('Login')
+
+
+# -------- Current month||||
+
+
+

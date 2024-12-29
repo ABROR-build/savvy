@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="ml-20 mt-10 mr-20">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg border-2 border-gray-100">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Sana
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Jami
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Xizmatlar
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Kanstovarlar
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                {% for date in month_dates  %}
+                    <tr class="bg-white border-b">
+                        <td scope="row" class="px-6 py-4 hover:font-medium hover:text-orange-600">
+                            {{ date }}
+                        </td>
+
+                        <td class="px-6 py-4 text-gray-600 font-semibold hover:text-orange-500">
+
+                        </td>
+
+                        <td class="px-6 py-4">
+
+                        </td>
+
+                        <td class="px-6 py-4">
+
+                        </td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+    </div>
+</div>
+{% endblock content %}

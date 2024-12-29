@@ -60,33 +60,33 @@
                     </td>
                     <td class="px-6 py-4 text-gray-600 font-semibold hover:text-orange-500">
                         <a href="{% url 'edit-activity' activity.pk %}">
-                            {{ activity.service }}<br>
+                            {{ activity.service }}
                         </a>
                     </td>
 
                     <td class="px-6 py-4">
-                        {{ activity.price }} so'm<br>
+                        {{ activity.price }} so'm
 
                     </td>
 
                     <td class="px-6 py-4">
-                        {{ activity.service_count }}<br>
+                        {{ activity.service_count }}
 
                     </td>
 
                     <td class="px-6 py-4">
-                        {{ activity.time }}<br>
+                        {{ activity.time }}
                     </td>
 
                     <td class="px-6 py-4 text-gray-600 font-semibold">
-                        {{ activity.total_price }}<br>
+                        {{ activity.total_price }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ activity.comment }}
                     </td>
 
-                    <td class="px-6 py-4">
-                        {{ activity.comment }}<br>
-                    </td>
                     {% load static %}
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-4 flex gap-2" >
                         <a href="{% url 'edit-activity' activity.pk %}">
                             <img src="{% static 'assets/edit-button.png' %}" width="24px" class="inline hover:opacity-70">
                         </a>
@@ -100,35 +100,35 @@
                 <tr class="bg-white border-b">
                     <td scope="row" class="px-6 py-4 hover:font-medium hover:text-orange-600">
                         <a href="{% url 'filter-by-user' activity.staff.username %}" >
-                            {{ activity.staff }}<br>
+                            {{ activity.staff }}
                         </a>
                     </td>
                     <td class="px-6 py-4 text-orange-600 font-semibold hover:text-orange-500">
                         <a href="{% url 'edit-custom-activity' activity.pk %}">
-                            {{ activity.service }}<br>
+                            {{ activity.service }}
                         </a>
 
                     </td>
 
                     <td class="px-6 py-4">
-                        {{ activity.price }} so'm<br>
+                        {{ activity.price }} so'm
                     </td>
 
                     <td class="px-6 py-4">
-                        {{ activity.service_count }}<br>
+                        {{ activity.service_count }}
 
                     </td>
 
                     <td class="px-6 py-4">
-                        {{ activity.time }}<br>
+                        {{ activity.time }}
                     </td>
 
                     <td class="px-6 py-4 text-gray-600 font-semibold">
-                        {{ activity.total_price }}<br>
+                        {{ activity.total_price }}
                     </td>
 
                     <td class="px-6 py-4">
-                        {{ activity.comment }}<br>
+                        {{ activity.comment }}
                     </td>
                     {% load static %}
                     <td class="px-6 py-4">
@@ -145,7 +145,7 @@
                 <tr class="bg-white border-b">
                     <td scope="row" class="px-6 py-4 hover:font-medium hover:text-orange-600">
                         <a href="{% url 'filter-by-user' stationary.staff.username %}">
-                            {{ stationary.staff }}<br>
+                            {{ stationary.staff }}
                         </a>
                     </td>
                     <td class="px-6 py-4 text-blue-600 font-semibold hover:font-medium hover:text-orange-600">
@@ -156,24 +156,23 @@
                     </td>
 
                     <td class="px-6 py-4">
-                        {{ stationary.price }} so'm<br>
+                        {{ stationary.price }} so'm
                     </td>
 
                     <td class="px-6 py-4">
-                        {{ stationary.stationary_count }}<br>
-
+                        {{ stationary.stationary_count }}
                     </td>
 
                     <td class="px-6 py-4">
-                        {{ stationary.time_sold }}<br>
+                        {{ stationary.time_sold }}
                     </td>
 
                     <td class="px-6 py-4 text-gray-600 font-semibold">
-                        {{ stationary.total_price }}<br>
+                        {{ stationary.total_price }}
                     </td>
 
                     <td class="px-6 py-4">
-                        {{ stationary.comment }}<br>
+                        {{ stationary.comment }}
                     </td>
                     {% load static %}
                     <td class="px-6 py-4">

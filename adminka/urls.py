@@ -19,5 +19,4 @@ urlpatterns = [
     path('delete-activity-/<int:pk>/', views.DeleteActivity.as_view(), name='delete-activity'),
     path('delete-custom-activity-/<int:pk>/', views.DeleteCustomActivity.as_view(), name='delete-custom-activity'),
     path('delete-stationary-activity-/<int:pk>/', views.DeleteStationaryActivity.as_view(), name='delete-stationary-activity'),
-
 ]
