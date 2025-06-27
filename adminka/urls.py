@@ -9,6 +9,8 @@ urlpatterns = [
     path('filter/<str:username>/', views.FilterByUser.as_view(), name='filter-by-user'),
     path('filter-services-by/<str:username>/', views.FilterServicesByUser.as_view(), name='filter-services-by-user'),
     path('filter-stationaries-by/<str:username>/', views.FilterStationariesByUser.as_view(), name='filter-stationaries-by-user'),
+    path('list-months/', views.ListMonths.as_view(), name='list-months'),
+    path('list-days/', views.ListDays.as_view(), name='list-days'),
 
     # update-activities
     path('edit-activity-/<int:pk>/', views.EditActivity.as_view(), name='edit-activity'),

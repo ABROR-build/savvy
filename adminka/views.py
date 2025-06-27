@@ -1,3 +1,5 @@
+from datetime import timedelta, date
+
 from django.db.models import Sum
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -275,7 +277,7 @@ class EditStationaryActivity(View):
 
                 stationary_income = models.StationaryIncome.objects.get(staff=stationary_activity.staff, date=today)
                 stationary_income.total_budget += (
-                            stationary_activity.total_price - stationary_activity_previous.total_price)
+                        stationary_activity.total_price - stationary_activity_previous.total_price)
                 stationary_income.save()
 
                 return redirect('list-todays-activities')
@@ -352,8 +354,31 @@ class DeleteStationaryActivity(View):
         else:
             return redirect('Login')
 
+class ListDays(View):
+    def get(self, request):
+        if request.user.is_staff:
+            current_date = timezone.localtime().date()  # Get the current date
+            total_budget = models.CompanyDailyBudget.objects.filter(
+                day__year=current_date.year,
+                day__month=current_date.month
+            )
+            context = {
+                'total_budget': total_budget,
+            }
+            return render(request, 'adminka/list_days.html', context=context)
+        else:
+            return redirect('Login')
 
-# -------- Current month||||
+class ListMonths(View):
+    def get(self, request):
+        if request.user.is_staff:
+            current_year = timezone.localtime().year
+            monthly_budget = models.CompanyMonthlyBudget.objects.filter(year=current_year)
 
+            context = {
+                'monthly_budgets': monthly_budget
+            }
 
-
+            return render(request, 'adminka/list_months.html', context=context)
+        else:
+            return redirect('Login')

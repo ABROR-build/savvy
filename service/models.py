@@ -88,9 +88,33 @@ class CompanyDailyBudget(models.Model):
     @receiver(post_delete, sender=StationaryIncome)
     def update_company_daily_budget(sender, instance, **kwargs):
         day = instance.date
-        total_budget_sum1 = DailyBudget.objects.filter(date=day).aggregate(Sum('total_budget'))['total_budget__sum'] or 0
-        total_budget_sum2 = StationaryIncome.objects.filter(date=day).aggregate(Sum('total_budget'))['total_budget__sum'] or 0
+        total_budget_sum1 = DailyBudget.objects.filter(date=day).aggregate(Sum('total_budget'))[
+                                'total_budget__sum'] or 0
+        total_budget_sum2 = StationaryIncome.objects.filter(date=day).aggregate(Sum('total_budget'))[
+                                'total_budget__sum'] or 0
         CompanyDailyBudget.objects.update_or_create(day=day, defaults={'budget': total_budget_sum1 + total_budget_sum2})
 
     class Meta:
         db_table = "CompanyDailyBudget"
+
+
+class CompanyMonthlyBudget(models.Model):
+    year = models.IntegerField()
+    month = models.IntegerField()
+    budget = models.IntegerField()
+
+    @receiver(post_save, sender=CompanyDailyBudget)
+    @receiver(post_delete, sender=CompanyDailyBudget)
+    def update_company_monthly_budget(sender, instance, **kwargs):
+        year = instance.day.year
+        month = instance.day.month
+        total_budget = CompanyDailyBudget.objects.filter(day__year=year, day__month=month).aggregate(Sum('budget'))['budget__sum'] or 0
+        CompanyMonthlyBudget.objects.update_or_create(
+            year=year,
+            month=month,
+            defaults={'budget': total_budget}
+        )
+
+    class Meta:
+        db_table = "CompanyMonthlyBudget"
+        unique_together = ("year", "month")

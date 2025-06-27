@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="ml-20 mt-10 mr-20">
+    <div class=" ml-20 grid grid-cols-4 gap-2 mr-20 mb-5">
+            <a href="{% url 'list-todays-activities' %}">
+                <div class="bg-orange-700 mt-7 pt-2 pb-2 rounded-lg hover:bg-orange-600">
+                    <p class="text-white text-center text-l font-semibold">Bugun</p>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="bg-orange-700 mt-7 pt-2 pb-2 rounded-lg hover:bg-orange-600">
+                    <p class="text-white text-center text-l font-semibold">Bu oy</p>
+                </div>
+            </a>
+
+            <a href="{% url 'list-months' %}">
+                <div class="bg-orange-700 mt-7 pt-2 pb-2 rounded-lg hover:bg-orange-600">
+                    <p class="text-white text-center text-l font-semibold">Bu yil</p>
+                </div>
+            </a>
+
+        </div>
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg border-2 border-gray-100">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Kun
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Byudjet
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for daily_budget in total_budget  %}
+                    <tr class="bg-white border-b">
+                        <td scope="row" class="px-6 py-4 hover:font-medium hover:text-orange-600">
+                            <a href="#">
+                                {{ daily_budget.day }}
+                            </a>
+                            <br>
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ daily_budget.budget }} so'm
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+    </div>
+</div>
+{% endblock content %}

@@ -23,7 +23,7 @@ class CompanyDailyBudgetAdmin(admin.ModelAdmin):
 
 
 class MonthlyBudgetAdmin(admin.ModelAdmin):
-    list_display = ['staff', 'month', 'monthly_budget']
+    list_display = ['year', 'month', 'budget']
 
 
 admin.site.register(models.Services, ServiceAdmin)
@@ -31,3 +31,4 @@ admin.site.register(models.Activity, ActivityAdmin)
 admin.site.register(models.CustomActivity, CustomActivityAdmin)
 admin.site.register(models.DailyBudget, DailyBudgetAdmin)
 admin.site.register(models.CompanyDailyBudget, CompanyDailyBudgetAdmin)
+admin.site.register(models.CompanyMonthlyBudget, MonthlyBudgetAdmin)
