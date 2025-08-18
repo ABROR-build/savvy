@@ -2,6 +2,8 @@ from django.views import View
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from datetime import date
+from django.db.models import Sum
+
 
 from . import models
 from . import forms
@@ -74,8 +76,11 @@ class ListSell(View):
         sells = models.StationaryActivity.objects.filter(
             staff=request.user, time_sold__date=today.date()
         )
+        stationary_total = models.StationaryIncome.objects.filter(staff=request.user, date=today.date()).aggregate(Sum('total_budget'))['total_budget__sum'] or 0
+
 
         context = {
-            'sells': sells
+            'sells': sells,
+            'stationary_total': stationary_total
         }
         return render(request, 'stationaries/list_sell.html', context=context)

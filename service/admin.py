@@ -13,6 +13,8 @@ class ActivityAdmin(admin.ModelAdmin):
 class CustomActivityAdmin(admin.ModelAdmin):
     list_display = ['staff', 'time', 'service', 'service_count', 'price', 'total_price', 'comment']
 
+class ExpensesAdmin(admin.ModelAdmin):
+    list_diplay = ['staff', 'time', 'item', 'item_count', 'price', 'total_price', 'comment']
 
 class DailyBudgetAdmin(admin.ModelAdmin):
     list_display = ['staff', 'date', 'minus', 'comment_minus', 'plus', 'comment_plus', 'total_budget']
@@ -29,6 +31,7 @@ class MonthlyBudgetAdmin(admin.ModelAdmin):
 admin.site.register(models.Services, ServiceAdmin)
 admin.site.register(models.Activity, ActivityAdmin)
 admin.site.register(models.CustomActivity, CustomActivityAdmin)
+admin.site.register(models.Expenses, ExpensesAdmin)
 admin.site.register(models.DailyBudget, DailyBudgetAdmin)
 admin.site.register(models.CompanyDailyBudget, CompanyDailyBudgetAdmin)
 admin.site.register(models.CompanyMonthlyBudget, MonthlyBudgetAdmin)

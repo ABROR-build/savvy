@@ -6,7 +6,7 @@ from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.db.models import Sum
 
-
+# services
 class Services(models.Model):
     name = models.CharField(max_length=300)
     price = models.IntegerField()
@@ -17,7 +17,7 @@ class Services(models.Model):
     def __str__(self):
         return self.name
 
-
+# activity
 class Activity(models.Model):
     staff = models.ForeignKey(Staff, on_delete=models.CASCADE)
     service = models.ForeignKey(Services, on_delete=models.CASCADE, null=True)
@@ -37,13 +37,13 @@ class Activity(models.Model):
     class Meta:
         db_table = "Activity"
 
-
+# custom activity
 class CustomActivity(models.Model):
     staff = models.ForeignKey(Staff, on_delete=models.CASCADE)
     service = models.CharField(max_length=800)
     service_count = models.PositiveIntegerField(default=1)
     time = models.DateTimeField(auto_now=True)
-    price = models.IntegerField(default=0)  # New field
+    price = models.IntegerField(default=0)
     comment = models.CharField(max_length=800, null=True, blank=True)
     total_price = models.IntegerField(default=0)
 
@@ -57,7 +57,27 @@ class CustomActivity(models.Model):
     class Meta:
         db_table = "CustomActivity"
 
+# expenses
+class Expenses(models.Model):
+    staff = models.ForeignKey(Staff, on_delete=models.CASCADE)
+    item = models.CharField(max_length=800)
+    item_count = models.PositiveIntegerField(default=1)
+    time = models.DateTimeField(auto_now=True)
+    price = models.IntegerField(default=0)
+    comment = models.CharField(max_length=800, null=True, blank=True)
+    total_price = models.IntegerField(default=0)
 
+    def calculate_price(self):
+        return self.price * self.item_count
+
+    def save(self, *args, **kwargs):
+        self.total_price = self.calculate_price()
+        super().save(*args, **kwargs)
+
+    class Meta:
+        db_table = "Expenses"
+
+# daily budegt
 class DailyBudget(models.Model):
     staff = models.ForeignKey(Staff, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
@@ -77,7 +97,7 @@ class DailyBudget(models.Model):
     class Meta:
         db_table = "DailyBudget"
 
-
+# company daily budged
 class CompanyDailyBudget(models.Model):
     day = models.DateField(auto_now=True)
     budget = models.IntegerField()
@@ -97,7 +117,7 @@ class CompanyDailyBudget(models.Model):
     class Meta:
         db_table = "CompanyDailyBudget"
 
-
+# company monthly budget
 class CompanyMonthlyBudget(models.Model):
     year = models.IntegerField()
     month = models.IntegerField()

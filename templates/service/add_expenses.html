@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="ml-40 mr-40 mb-30">
+    <form method="post">{% csrf_token %}
+      <div class="mb-5">
+          <label class="block mb-2 mt-3 text-sm font-medium text-gray-400">Harajat qilingan buyum</label>
+          <input type="text" name="item" class="block w-full p-4 text-gray-500 text-medium border-2 border-gray-300 rounded-lg bg-white text-base focus:border-orange-500 focus:outline-orange-500">
+      </div>
+    <div class="mb-5">
+          <label class="block mb-2 mt-3 text-sm font-medium text-gray-400">Narx</label>
+          <input type="text" name="price" class="block w-full p-4 text-gray-500 text-medium border-2 border-gray-300 rounded-lg bg-white text-base focus:border-orange-500 focus:outline-orange-500">
+      </div>
+    <div class="mb-5">
+          <label class="block mb-2 mt-3 text-sm font-medium text-gray-400">Soni</label>
+          <input type="number" name="item_count" class="block w-full p-4 text-gray-500 text-medium border-2 border-gray-300 rounded-lg bg-white text-base focus:border-orange-500 focus:outline-orange-500">
+      </div>
+    <div class="mb-5">
+          <label class="block mb-2 mt-3 text-sm font-medium text-gray-400">Komment</label>
+          <input type="text" name="comment" class="block w-full p-4 text-gray-500 text-medium border-2 border-gray-300 rounded-lg bg-white text-base focus:border-orange-500 focus:outline-orange-500 ">
+      </div>
+        <button class="px-5 mt-8 w-full py-3 rounded-xl text-white bg-neutral-600 hover:bg-orange-800" type="submit">Post</button>
+</form>
+</div>
+
+
+{% endblock content %}

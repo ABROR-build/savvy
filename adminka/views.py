@@ -24,11 +24,15 @@ class ListTodayActivities(View):
             activities = models.Activity.objects.filter(time__date=today.date())
             custom_activities = models.CustomActivity.objects.filter(time__date=today.date())
             stationaries = StationaryActivity.objects.filter(time_sold__date=today.date())
+            expenses = models.Expenses.objects.filter(time__date=today.date())
 
             # budgets
             total_budget = models.CompanyDailyBudget.objects.filter(day=today.date())
             activity_total = models.DailyBudget.objects.filter(date=today.date()).aggregate(Sum('total_budget'))[
                                  'total_budget__sum'] or 0
+            
+            expenses_total = models.Expenses.objects.filter(time__date=today.date()).aggregate(Sum('total_price'))['total_price__sum'] or 0
+            
             stationary_total = models.StationaryIncome.objects.filter(date=today.date()).aggregate(Sum('total_budget'))[
                                    'total_budget__sum'] or 0
 
@@ -37,7 +41,9 @@ class ListTodayActivities(View):
                 'custom_activities': custom_activities,
                 'stationaries': stationaries,
                 'total_budget': total_budget,
+                'expenses': expenses,
                 'activity_total': activity_total,
+                'expenses_total': expenses_total,
                 'stationary_total': stationary_total,
             }
             return render(request, 'adminka/homepage.html', context=context)
@@ -382,3 +388,5 @@ class ListMonths(View):
             return render(request, 'adminka/list_months.html', context=context)
         else:
             return redirect('Login')
+        
+
