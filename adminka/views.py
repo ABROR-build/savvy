@@ -102,6 +102,32 @@ class FilterStationaries(View):
         else:
             return redirect('Login')
 
+class FilterExpenses(View):
+    def get(self, request):
+        if request.user.is_staff:
+            today = timezone.localtime()
+            expenses = models.Expenses.objects.filter(time__date=today.date())
+
+            # budgets
+            total_budget = models.CompanyDailyBudget.objects.filter(day=today.date())
+            activity_total = models.DailyBudget.objects.filter(date=today.date()).aggregate(Sum('total_budget'))[
+                                 'total_budget__sum'] or 0
+            stationary_total = models.StationaryIncome.objects.filter(date=today.date()).aggregate(Sum('total_budget'))[
+                                   'total_budget__sum'] or 0
+            expenses_total = models.Expenses.objects.filter(time__date=today.date()).aggregate(Sum('total_price'))['total_price__sum'] or 0
+
+
+            context = {
+                'expenses': expenses,
+                'total_budget': total_budget,
+                'activity_total': activity_total,
+                'stationary_total': stationary_total,
+                'expenses_total': expenses_total
+            }
+
+            return render(request, 'adminka/filter_expenses.html', context=context)
+        else:
+            return redirect('Login')
 
 class FilterByUser(View):
     def get(self, request, username):
